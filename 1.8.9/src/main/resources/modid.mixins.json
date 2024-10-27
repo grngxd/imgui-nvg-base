@@ -1,0 +1,16 @@
+{
+  "required": true,
+  "minVersion": "0.8",
+  "package": "cc.grng.base.mod.mixin",
+  "compatibilityLevel": "JAVA_21",
+  "mixins": [
+    "DisplayMixin",
+    "IngameHudMixin"
+  ],
+  "client": [
+    "MinecraftClientMixin"
+  ],
+  "injectors": {
+    "defaultRequire": 1
+  }
+}
