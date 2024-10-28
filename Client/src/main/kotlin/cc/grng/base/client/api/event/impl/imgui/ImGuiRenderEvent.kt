@@ -5,7 +5,6 @@ import cc.grng.edge.event.Event
 class ImGuiRenderEvent(val level: ImGuiRenderLevel) : Event()
 enum class ImGuiRenderLevel {
     START_RENDER,
-    HUD,
-    GUI,
+    RENDER,
     END_RENDER,
 }

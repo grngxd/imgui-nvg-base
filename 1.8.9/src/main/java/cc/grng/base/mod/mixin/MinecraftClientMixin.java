@@ -9,6 +9,7 @@ import cc.grng.base.mod.api.ui.ClientScreenWrapper;
 import cc.grng.edge.event.EventManager;
 import cc.grng.edge.event.impl.tick.PreTickEvent;
 import cc.grng.edge.event.impl.tick.TickEvent;
+import com.google.common.collect.Maps;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.gui.screen.Screen;
 import net.minecraft.client.gui.screen.TitleScreen;
@@ -72,6 +73,13 @@ public abstract class MinecraftClientMixin implements MinecraftClientBridge {
 		return MinecraftClient.getCurrentFps();
 	}
 
+	/* public static Map<String, String> getSessionInfoMap() {
+		Map<String, String> map = Maps.<String, String>newHashMap();
+		map.put("X-Minecraft-Username", getInstance().getSession().getUsername());
+		map.put("X-Minecraft-UUID", getInstance().getSession().getUuid());
+		map.put("X-Minecraft-Version", "1.8.9");
+		return map;
+	} */
 	@Override
 	public Map<String, String> bridge$getSessionInfoMap() {
 		return MinecraftClient.getSessionInfoMap();

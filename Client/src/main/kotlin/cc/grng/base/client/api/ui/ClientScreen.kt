@@ -10,8 +10,8 @@ abstract class ClientScreen(val name: String = "ImGUI", var pauseGame: Boolean =
     var width = Reference.Display().`bridge$getWidth`()
     var height = Reference.Display().`bridge$getHeight`()
 
-    var i = Client.instance.imgu
-    val u = NVGU()
+    var i = Client.instance.i
+    val u = Client.instance.u
 
     open fun init() {}
     open fun render(mouseX: Int, mouseY: Int, delta: Float) {

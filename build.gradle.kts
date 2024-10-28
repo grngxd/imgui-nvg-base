@@ -26,8 +26,10 @@ subprojects {
         maven("https://jitpack.io")
     }
 
+    val imguVersion = "78129897e0"
+
     dependencies {
-        implementation("com.github.grngxd:imgu:-SNAPSHOT")
+        implementation("com.github.grngxd:imgu:$imguVersion")
     }
 }
 

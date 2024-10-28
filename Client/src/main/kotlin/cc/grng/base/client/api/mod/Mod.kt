@@ -2,8 +2,6 @@ package cc.grng.base.client.api.mod
 
 import cc.grng.base.bridge.Reference
 import cc.grng.base.client.Client
-import org.lwjgl.opengl.GL.destroy
-import org.nvgu.NVGU
 
 open class Mod(
     val name: String = "",
@@ -17,10 +15,15 @@ open class Mod(
     var enabled: Boolean = enabledByDefault
 
     var width = Reference.Display().`bridge$getWidth`()
+        get() = Reference.Display().`bridge$getWidth`()
     var height = Reference.Display().`bridge$getHeight`()
+        get() = Reference.Display().`bridge$getHeight`()
 
-    val i = Client.instance.imgu
-    val u = NVGU()
+    val x = 0;
+    val y = 0;
+
+    val i = Client.instance.i
+    val u = Client.instance.u
 
     open fun start() {
         enabled = true
