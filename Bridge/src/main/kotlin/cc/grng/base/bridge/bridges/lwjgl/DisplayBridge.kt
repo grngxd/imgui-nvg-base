@@ -6,4 +6,5 @@ interface DisplayBridge: Bridge {
     fun `bridge$getWidth`(): Int
     fun `bridge$getHeight`(): Int
     fun `bridge$getHandle`(): Long
+    fun `bridge$setDisplayTitle`(title: String)
 }

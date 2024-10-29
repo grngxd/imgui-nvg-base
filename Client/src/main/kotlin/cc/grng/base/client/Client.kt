@@ -31,7 +31,14 @@ class Client {
     @Getter
     val u = NVGU()
         .create()
-        .createFont("Rethink-Medium", Client::class.java.getResourceAsStream("/fonts/Rethink-Medium.ttf"))
+        .createFont(
+            "Rethink-Medium",
+            Client::class.java.getResourceAsStream("/fonts/Rethink-Medium.ttf")
+        )
+        .createFont(
+            "Roboto",
+            Client::class.java.getResourceAsStream("/Roboto-Medium.ttf")
+        )
 
     val version = "1.0-A1"
 

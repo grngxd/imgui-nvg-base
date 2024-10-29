@@ -1,5 +1,6 @@
 package cc.grng.base.bridge
 import cc.grng.base.bridge.bridges.lwjgl.DisplayBridge
+import cc.grng.base.bridge.bridges.lwjgl.MouseBridge
 import cc.grng.base.bridge.bridges.minecraft.MinecraftClientBridge
 import lombok.Getter
 import lombok.Setter
@@ -12,6 +13,9 @@ class BridgeManager {
 
     lateinit var minecraftClientBridge: MinecraftClientBridge;
     lateinit var displayBridge: DisplayBridge;
+    lateinit var mouseBridge: MouseBridge;
+
+
 
     fun start() {
         println("Bridge started!")

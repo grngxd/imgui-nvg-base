@@ -7,7 +7,7 @@ import org.nvgu.util.NVGUColour
 import java.awt.Color
 import java.awt.Rectangle
 
-class FPSMod: Mod(
+class FPSMod : Mod(
     name = "FPS Mod",
     aliases = arrayOf("fpsmod", "fps"),
     version = "1.0",
@@ -15,25 +15,30 @@ class FPSMod: Mod(
     author = "Grng",
     enabledByDefault = true
 ) {
+
     override fun render() {
+        val fpsText = "${Reference.Minecraft().`bridge$getDebugFps`()} FPS"
+        val textSize = ((screenWidth + screenHeight) / 100f).toInt()
+        val textWidth = u.textWidth(fpsText, "Rethink-Medium", textSize)
+        val textHeight = u.textHeight("Rethink-Medium", textSize)
+        val padding = (screenWidth + screenHeight) / 80
+
+        width = textWidth.toInt() + padding
+        height = textHeight.toInt() + padding
+
         u.roundedRectangle(
-            Rectangle(
-                width - ((width + height) / 100) - ((width + height) / 20),
-                (width + height) / 100,
-                (width + height) / 20,
-                (width + height) / 40,
-            ),
-            (width + height) / 200f,
+            Rectangle(x, y, width, height),
+            padding / 3f,
             NVGUColour.decode("#E15A97")
         )
         u.text(
-            "${Reference.Minecraft().`bridge$getDebugFps`()} FPS",
-            (width - ((width + height) / 100) - ((width + height) / 40)).toFloat(),
-            ((width + height) / 100 + (width + height) / 80).toFloat(),
+            fpsText,
+            (x + padding / 2).toFloat(),
+            (y + padding / 2).toFloat(),
             NVGUColour.decode("#FFFFFF"),
             "Rethink-Medium",
-            (width + height) / 100,
-            Alignment.CENTER_MIDDLE,
+            textSize,
+            Alignment.LEFT_TOP
         )
     }
 }

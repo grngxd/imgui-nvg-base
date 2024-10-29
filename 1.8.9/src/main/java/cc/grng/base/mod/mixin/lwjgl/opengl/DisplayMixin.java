@@ -2,6 +2,7 @@ package cc.grng.base.mod.mixin.lwjgl.opengl;
 
 import cc.grng.base.bridge.BridgeManager;
 import cc.grng.base.bridge.bridges.lwjgl.DisplayBridge;
+import org.jetbrains.annotations.NotNull;
 import org.lwjgl.opengl.Display;
 import org.lwjgl.opengl.PixelFormat;
 import org.spongepowered.asm.mixin.Mixin;
@@ -48,5 +49,10 @@ public class DisplayMixin implements DisplayBridge {
     @Override
     public long bridge$getHandle() {
         return handle;
+    }
+
+    @Override
+    public void bridge$setDisplayTitle(@NotNull String title) {
+        Display.setTitle(title);
     }
 }

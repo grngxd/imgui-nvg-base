@@ -4,6 +4,7 @@ package cc.grng.base.client.api.mod
 import cc.grng.base.bridge.Reference
 import cc.grng.base.client.Client
 import cc.grng.base.client.api.event.impl.hud.HudRenderEvent
+import cc.grng.base.client.api.gl.GLStateHelper
 import cc.grng.base.client.api.mod.impl.FPSMod
 import cc.grng.edge.event.EventManager
 import cc.grng.edge.event.EventPriority
@@ -33,10 +34,14 @@ class ModManager {
         }
     }
 
+    val glStateHelper = GLStateHelper()
+
     @Subscribe(target = HudRenderEvent::class, priority = EventPriority.REALTIME)
     fun `event$HudRenderEvent`(event: HudRenderEvent) {
+        glStateHelper.backup()
         Client.instance.u.frame(Reference.Display().`bridge$getWidth`(), Reference.Display().`bridge$getHeight`()) {
             enabledMods.forEach { it.render() }
         }
+        glStateHelper.restore()
     }
 }

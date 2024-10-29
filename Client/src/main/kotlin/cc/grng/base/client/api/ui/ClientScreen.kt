@@ -8,7 +8,9 @@ import org.nvgu.NVGU
 abstract class ClientScreen(val name: String = "ImGUI", var pauseGame: Boolean = false): ClientScreenBridge {
     val id = name.hashCode()
     var width = Reference.Display().`bridge$getWidth`()
+        get() = Reference.Display().`bridge$getWidth`()
     var height = Reference.Display().`bridge$getHeight`()
+        get() = Reference.Display().`bridge$getHeight`()
 
     var i = Client.instance.i
     val u = Client.instance.u
@@ -18,6 +20,12 @@ abstract class ClientScreen(val name: String = "ImGUI", var pauseGame: Boolean =
         width = Reference.Display().`bridge$getWidth`()
         height = Reference.Display().`bridge$getHeight`()
     }
+
+    open fun mouseClicked(x: Int, y: Int, button: Int) {}
+    open fun mouseReleased(x: Int, y: Int, button: Int) {}
+
+    open fun keyPressed(id: Char, key: Int) {}
+
     open fun destroy() {}
 
     override fun getScreen(): ClientScreen {

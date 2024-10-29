@@ -17,8 +17,8 @@ public class InGameHudMixin {
     }
 
     GLStateHelper glStateHelper = new GLStateHelper();
-    @Inject(at = @At("HEAD"), method = "render")
+    @Inject(at = @At("RETURN"), method = "render")
     private void mixin$render(CallbackInfo ci) {
-        EventManager.Companion.getInstance().fire(new HudRenderEvent()  );
+        EventManager.Companion.getInstance().fire(new HudRenderEvent());
     }
 }

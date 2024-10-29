@@ -6,6 +6,7 @@ import cc.grng.base.bridge.bridges.minecraft.ScreenBridge;
 import cc.grng.base.client.Client;
 import cc.grng.base.client.api.ui.ClientScreen;
 import cc.grng.base.mod.api.ui.ClientScreenWrapper;
+import cc.grng.base.mod.impl.MouseImpl;
 import cc.grng.edge.event.EventManager;
 import cc.grng.edge.event.impl.tick.PreTickEvent;
 import cc.grng.edge.event.impl.tick.TickEvent;
@@ -21,6 +22,7 @@ import org.lwjgl.opengl.Display;
 import org.spongepowered.asm.mixin.Final;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
+import org.spongepowered.asm.mixin.Unique;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
@@ -40,9 +42,16 @@ public abstract class MinecraftClientMixin implements MinecraftClientBridge {
 		Client.Companion.getBridgeManager().setMinecraftClientBridge(this);
 	}*/
 
+	@Unique
+	private void edge$setupStaticBridges() {
+		BridgeManager.Companion.getInstance().setMouseBridge(new MouseImpl());
+	}
+
 	@Inject(at = @At("TAIL"), method = "initializeGame")
 	private void edge$initializeGame(CallbackInfo info) {
 		BridgeManager.Companion.getInstance().setMinecraftClientBridge(this);
+		edge$setupStaticBridges();
+
 		Client.Companion.getInstance().start();
 	}
 
